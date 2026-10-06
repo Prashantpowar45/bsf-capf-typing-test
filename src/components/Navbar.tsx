@@ -152,7 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 <BookOpen className="w-4 h-4" />
-                <span>Passages (50)</span>
+                <span>Passages</span>
               </button>
 
               <button
