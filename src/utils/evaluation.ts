@@ -119,23 +119,35 @@ export function evaluateTypingTest(
   let missingWords = 0;
   let extraWords = 0;
 
-  alignedTokens.forEach(token => {
+  // Only omissions inside the attempted portion should be penalized.
+  // Trailing passage words that the candidate never reached are not mistakes.
+  let lastAttemptedTokenIndex = -1;
+  alignedTokens.forEach((token, index) => {
+    if (token.status !== 'missing') {
+      lastAttemptedTokenIndex = index;
+    }
+  });
+
+  alignedTokens.forEach((token, index) => {
     if (token.status === 'correct') {
       correctWords++;
     } else if (token.status === 'incorrect') {
       incorrectWords++;
-    } else if (token.status === 'missing') {
+    } else if (token.status === 'missing' && index <= lastAttemptedTokenIndex) {
       missingWords++;
     } else if (token.status === 'extra') {
       extraWords++;
     }
   });
 
-  // In exam evaluation: Mistakes = incorrect words + extra words
-  // (Missing words beyond what the candidate reached are not counted as penalty mistakes,
-  // but missing words inside typed stream are counted)
-  // Let's count actual errors made in the typed text:
-  const totalMistakes = incorrectWords + extraWords;
+  // Actual mistakes inside the attempted stream include substitutions,
+  // inserted words, and omitted words before the last attempted token.
+  const totalMistakes = incorrectWords + extraWords + missingWords;
+
+  // Do not flood the review with the untouched remainder of the passage.
+  const diffTokens = lastAttemptedTokenIndex >= 0
+    ? alignedTokens.slice(0, lastAttemptedTokenIndex + 1)
+    : [];
 
   // Character level statistics
   let correctCharacters = 0;
@@ -242,7 +254,7 @@ export function evaluateTypingTest(
     statusReason,
     performanceRating,
     
-    diffTokens: alignedTokens,
+    diffTokens,
     typedText,
     completedAt: new Date().toISOString(),
   };

@@ -47,6 +47,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
   }, [isQualified]);
 
   const handlePrintScorecard = () => {
+    document.body.dataset.printMode = 'scorecard';
     window.print();
   };
 

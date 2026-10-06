@@ -33,46 +33,68 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const warningTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isFinishedRef = useRef(false);
+  const typedTextRef = useRef('');
+  const startedAtRef = useRef(Date.now());
+  const endTimeRef = useRef(startedAtRef.current + TOTAL_TEST_SECONDS * 1000);
 
-  // Play start bell on mount
+  // Keep audio preference in sync without replaying the start bell.
   useEffect(() => {
     soundService.setEnabled(settings.soundEnabled);
-    soundService.playStartBell();
-    // Auto-focus the typing area
-    if (textareaRef.current) {
-      textareaRef.current.focus();
-    }
   }, [settings.soundEnabled]);
 
-  // Main countdown timer
+  // Play the start bell and focus only once when a test begins.
   useEffect(() => {
-    const timer = setInterval(() => {
-      setSecondsRemaining((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          handleTimeExpired();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    soundService.playStartBell();
+    textareaRef.current?.focus();
 
-    return () => clearInterval(timer);
+    return () => {
+      if (warningTimerRef.current) {
+        clearTimeout(warningTimerRef.current);
+      }
+    };
   }, []);
 
   const handleTimeExpired = useCallback(() => {
     if (isFinishedRef.current) return;
     isFinishedRef.current = true;
     soundService.playFinishBell();
-    onFinishTest(typedText, TOTAL_TEST_SECONDS);
-  }, [typedText, onFinishTest]);
+    onFinishTest(typedTextRef.current, TOTAL_TEST_SECONDS);
+  }, [onFinishTest]);
+
+  // Drift-resistant countdown. Using an absolute end time also keeps the timer
+  // accurate if the tab is briefly throttled by the browser.
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+
+    const tick = () => {
+      const remaining = Math.max(
+        0,
+        Math.ceil((endTimeRef.current - Date.now()) / 1000)
+      );
+
+      setSecondsRemaining(remaining);
+
+      if (remaining === 0) {
+        clearInterval(timer);
+        handleTimeExpired();
+      }
+    };
+
+    timer = setInterval(tick, 250);
+    tick();
+
+    return () => clearInterval(timer);
+  }, [handleTimeExpired]);
 
   const handleManualSubmit = () => {
     if (isFinishedRef.current) return;
     isFinishedRef.current = true;
     soundService.playFinishBell();
-    const timeTaken = TOTAL_TEST_SECONDS - secondsRemaining;
-    onFinishTest(typedText, timeTaken > 0 ? timeTaken : 1);
+    const timeTaken = Math.min(
+      TOTAL_TEST_SECONDS,
+      Math.max(1, Math.ceil((Date.now() - startedAtRef.current) / 1000))
+    );
+    onFinishTest(typedTextRef.current, timeTaken);
   };
 
   const showTemporaryWarning = (msg: string) => {
@@ -138,25 +160,49 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
     showTemporaryWarning('⚠️ Pasting text is strictly prohibited in examination mode.');
   };
 
-  // Block Cut event
+  // Block clipboard/context-menu/drag-and-drop editing paths as well.
   const handleCut = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
+    showTemporaryWarning('⚠️ Cutting text is disabled in examination mode.');
   };
 
-  // Enforce forward-only typing during input changes
+  const handleCopy = (e: React.ClipboardEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
+    showTemporaryWarning('⚠️ Copying text is disabled in examination mode.');
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
+    showTemporaryWarning('⚠️ Drag-and-drop text insertion is disabled.');
+    lockCursorToEnd();
+  };
+
+  const handleContextMenu = (e: React.MouseEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
+    showTemporaryWarning('⚠️ Right-click editing is disabled in examination mode.');
+    lockCursorToEnd();
+  };
+
+  // Enforce append-only input. Merely checking text length is not enough:
+  // a browser/mobile editor can replace earlier text with a same-or-longer value.
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = e.target.value;
-    // Disallow shortening of text (extra safeguard against browser autocomplete/undo)
-    if (val.length < typedText.length) {
-      showTemporaryWarning('⚠️ Text deletion is blocked.');
+    const previous = typedTextRef.current;
+
+    if (val.length < previous.length || !val.startsWith(previous)) {
+      showTemporaryWarning('⚠️ Editing previously typed text is blocked.');
+      requestAnimationFrame(lockCursorToEnd);
       return;
     }
+
+    typedTextRef.current = val;
     setTypedText(val);
   };
 
-  // Mouse click / selection redirection: prevent cursor moving to past text
+  // Mouse/touch selection can be applied after the pointer event completes,
+  // so move the caret back to the end on the next animation frame.
   const handleSelectionOrClick = () => {
-    lockCursorToEnd();
+    requestAnimationFrame(lockCursorToEnd);
   };
 
   // Live Metrics Calculations
@@ -286,6 +332,10 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
             onKeyDown={handleKeyDown}
             onPaste={handlePaste}
             onCut={handleCut}
+            onCopy={handleCopy}
+            onDrop={handleDrop}
+            onDragOver={(e) => e.preventDefault()}
+            onContextMenu={handleContextMenu}
             onClick={handleSelectionOrClick}
             onMouseDown={handleSelectionOrClick}
             onSelect={handleSelectionOrClick}

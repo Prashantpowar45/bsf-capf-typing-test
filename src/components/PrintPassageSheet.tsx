@@ -8,7 +8,7 @@ interface PrintPassageSheetProps {
 
 export const PrintPassageSheet: React.FC<PrintPassageSheetProps> = ({ passage, settings }) => {
   return (
-    <div className="print-only p-8 max-w-4xl mx-auto font-serif text-black leading-relaxed">
+    <div className="passage-print-sheet p-8 max-w-4xl mx-auto font-serif text-black leading-relaxed">
       {/* Official Government Exam Header */}
       <div className="text-center border-b-2 border-black pb-4 mb-6">
         <h2 className="text-sm font-bold uppercase tracking-widest text-slate-800 m-0">

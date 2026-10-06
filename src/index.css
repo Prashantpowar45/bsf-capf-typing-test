@@ -38,8 +38,13 @@
   background: #64748b;
 }
 
-/* Print specific styles for Paper-to-Screen Question Sheet */
+/* Print modes: keep passage sheets and result scorecards isolated. */
 @media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
   body {
     background: white !important;
     color: black !important;
@@ -53,13 +58,28 @@
     display: none !important;
   }
 
-  .print-only {
+  /* Hidden unless the user explicitly chooses "Print Passage". */
+  .passage-print-sheet {
+    display: none !important;
+  }
+
+  /* App.tsx renders Navbar, main, passage sheet, and footer as direct children. */
+  body[data-print-mode="passage"] #root > div > * {
+    display: none !important;
+  }
+
+  body[data-print-mode="passage"] #root > div > .passage-print-sheet {
     display: block !important;
+  }
+
+  /* Scorecard printing must never include the hidden question paper. */
+  body[data-print-mode="scorecard"] .passage-print-sheet {
+    display: none !important;
   }
 }
 
 @media screen {
-  .print-only {
+  .passage-print-sheet {
     display: none !important;
   }
 }

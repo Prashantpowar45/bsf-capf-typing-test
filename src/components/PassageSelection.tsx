@@ -52,6 +52,7 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
 
   const handlePrint = () => {
     setHasPrintedOrViewed(true);
+    document.body.dataset.printMode = 'passage';
     window.print();
   };
 
