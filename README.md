@@ -12,7 +12,7 @@ Built for candidates preparing for typing tests conducted by **BSF, CRPF, CISF, 
 - **Duration:** Exactly 10 Minutes (600 Seconds countdown timer)
 - **Word Calculation:** 5 Keystrokes = 1 Word (Gross Words = Total Keystrokes ÷ 5)
 - **Mode:** **True Paper-to-Screen**
-  - Select passage from official 50-passage bank.
+  - Select a passage from the 96-item BSF HCM practice library.
   - Preview & print physical A4 question paper sheet using **Print Passage**.
   - Keep paper in front/beside the keyboard.
   - Click **Start Typing Test** — the passage **COMPLETELY DISAPPEARS** from the screen.
@@ -29,7 +29,7 @@ Built for candidates preparing for typing tests conducted by **BSF, CRPF, CISF, 
 - **Automated Qualification:**
   - Automatically determines **✓ QUALIFIED** or **✗ NOT QUALIFIED** based on Net Speed ≥ 35.0 WPM and accuracy metrics.
 - **Passage Library:**
-  - Pre-loaded with a **50-passage practice library** for repeated typing sessions.
+  - Pre-loaded with **96 BSF HCM typing passages** imported from the user-provided BSF typing material.
   - Passage text is preserved as stored in the project data (no runtime spell correction or paraphrasing).
   - Admin Passage Management interface to add, edit, export, or reset passages.
 
@@ -37,7 +37,7 @@ Built for candidates preparing for typing tests conducted by **BSF, CRPF, CISF, 
 
 ## 🚀 Features
 
-- 📄 **Official A4 Printable Question Paper:** Government-formatted printable exam sheets with candidate name, roll number, time, and passage matter.
+- 📄 **A4 Printable Practice Sheet:** Government-formatted printable exam sheets with candidate name, roll number, time, and passage matter.
 - ⏱️ **Distraction-Free 10-Min Timer:** Prominent countdown display with automated submission at 00:00.
 - 🔊 **Web Audio Synthesizer:** Realistic mechanical typewriter key clicks, warning buzzer on restricted keys, start bell, and qualification fanfare.
 - 📊 **Comprehensive Result Scorecard:**
