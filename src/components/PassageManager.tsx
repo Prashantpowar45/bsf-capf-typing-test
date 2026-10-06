@@ -72,8 +72,8 @@ export const PassageManager: React.FC<PassageManagerProps> = ({
       content: formContent.trim(),
       wordCount: words,
       charCount: chars,
-      source: 'User Custom Exam Matter',
-      isCustom: true,
+      source: editingPassage?.source || 'User Custom Exam Matter',
+      isCustom: editingPassage ? editingPassage.isCustom : true,
     };
 
     onSavePassage(newOrUpdated);
@@ -88,7 +88,10 @@ export const PassageManager: React.FC<PassageManagerProps> = ({
     const a = document.createElement('a');
     a.href = url;
     a.download = `CAPF_BSF_HCM_Passages_${passages.length}_Matter.json`;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const importPassagesJSON = (e: React.ChangeEvent<HTMLInputElement>) => {

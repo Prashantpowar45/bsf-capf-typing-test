@@ -225,6 +225,12 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
       ? 'text-amber-600 bg-amber-50 border-amber-300' 
       : 'text-slate-900 bg-white border-slate-300';
 
+  const typingFontClass = settings.fontSize === 'large'
+    ? 'text-lg sm:text-xl'
+    : settings.fontSize === 'small'
+      ? 'text-sm sm:text-base'
+      : 'text-base sm:text-lg';
+
   return (
     <div className="min-h-[calc(100vh-5rem)] bg-slate-100/80 py-6 px-4 sm:px-6 lg:px-8 select-none">
       <div className="max-w-5xl mx-auto space-y-4">
@@ -252,7 +258,7 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
           </div>
 
           {/* Prominent Digital Timer */}
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4 w-full sm:w-auto">
             <div className={`px-5 py-2.5 rounded-xl border-2 shadow-sm font-mono flex items-center space-x-2.5 ${timerColor}`}>
               <Clock className="w-5 h-5 shrink-0" />
               <div>
@@ -267,7 +273,7 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
 
             <button
               onClick={() => setShowConfirmSubmit(true)}
-              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-bold flex items-center space-x-1.5 shadow-sm transition-colors"
+              className="flex-1 sm:flex-none px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-bold flex items-center justify-center space-x-1.5 shadow-sm transition-colors"
             >
               <Send className="w-4 h-4" />
               <span className="hidden sm:inline">Submit Test</span>
@@ -344,7 +350,7 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
             autoCorrect="off"
             autoCapitalize="off"
             rows={12}
-            className="w-full p-4 border border-slate-300 rounded-xl text-slate-900 font-mono text-base leading-relaxed tracking-normal focus:ring-4 focus:ring-amber-500/20 focus:border-amber-600 focus:outline-none resize-none shadow-inner bg-slate-50/40 select-none"
+            className={`w-full p-4 border border-slate-300 rounded-xl text-slate-900 font-mono leading-relaxed tracking-normal focus:ring-4 focus:ring-amber-500/20 focus:border-amber-600 focus:outline-none resize-none shadow-inner bg-slate-50/40 select-none ${typingFontClass}`}
             placeholder="Place your physical printed paper on your desk and start typing here... As per official CAPF / BSF HCM rules, backspace and editing keys are disabled. Type forward accurately."
           />
 

@@ -47,9 +47,18 @@ export const Navbar: React.FC<NavbarProps> = ({
     }
   };
 
+  const openSettings = () => {
+    setCandidateName(settings.candidateName);
+    setRollNumber(settings.rollNumber);
+    setShowSettingsModal(true);
+  };
+
   const handleSaveProfile = (e: React.FormEvent) => {
     e.preventDefault();
-    onUpdateSettings({ candidateName, rollNumber });
+    onUpdateSettings({
+      candidateName: candidateName.trim(),
+      rollNumber: rollNumber.trim(),
+    });
     setShowSettingsModal(false);
   };
 
@@ -60,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center space-x-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span className="font-semibold tracking-wider text-slate-300">
-            OFFICIAL SIMULATION PORTAL • CAPF & BSF HCM RECRUITMENT
+            CAPF & BSF HCM TYPING PRACTICE SIMULATOR
           </span>
         </div>
         <div className="hidden sm:flex items-center space-x-4">
@@ -188,7 +197,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Candidate Profile / Settings */}
             {!isTestActive && (
               <button
-                onClick={() => setShowSettingsModal(true)}
+                onClick={openSettings}
                 title="Candidate Profile & Settings"
                 className="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-700 transition-colors"
               >
@@ -304,14 +313,50 @@ export const Navbar: React.FC<NavbarProps> = ({
                   />
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-slate-700">Display Live WPM / Accuracy during test</span>
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <span className="text-sm font-medium text-slate-700 block">Display Live Speed Stats</span>
+                    <span className="text-[11px] text-slate-400">WPM, strokes and elapsed time during practice</span>
+                  </div>
                   <input
                     type="checkbox"
                     checked={settings.liveStatsEnabled}
                     onChange={(e) => onUpdateSettings({ liveStatsEnabled: e.target.checked })}
                     className="h-4 w-4 text-amber-600 rounded"
                   />
+                </div>
+
+                <div>
+                  <span className="text-sm font-medium text-slate-700 block mb-2">Typing Font Size</span>
+                  <div className="grid grid-cols-3 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => onUpdateSettings({ fontSize: 'small' })}
+                      className={settings.fontSize === 'small'
+                        ? 'px-3 py-2 rounded-lg border border-amber-500 bg-amber-50 text-amber-800 text-xs font-bold'
+                        : 'px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-600 text-xs font-bold hover:bg-slate-50'}
+                    >
+                      Small
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onUpdateSettings({ fontSize: 'medium' })}
+                      className={settings.fontSize === 'medium'
+                        ? 'px-3 py-2 rounded-lg border border-amber-500 bg-amber-50 text-amber-800 text-xs font-bold'
+                        : 'px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-600 text-xs font-bold hover:bg-slate-50'}
+                    >
+                      Medium
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onUpdateSettings({ fontSize: 'large' })}
+                      className={settings.fontSize === 'large'
+                        ? 'px-3 py-2 rounded-lg border border-amber-500 bg-amber-50 text-amber-800 text-xs font-bold'
+                        : 'px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-600 text-xs font-bold hover:bg-slate-50'}
+                    >
+                      Large
+                    </button>
+                  </div>
                 </div>
               </div>
 

@@ -32,7 +32,7 @@ export const TestHistory: React.FC<TestHistoryProps> = ({ history, onClearHistor
     .sort((a, b) => {
       if (sortBy === 'netWpm') return b.netWpm - a.netWpm;
       if (sortBy === 'accuracy') return b.accuracy - a.accuracy;
-      return new Date(b.date + ' ' + b.time).getTime() - new Date(a.date + ' ' + a.time).getTime();
+      return 0; // history is already stored newest-first
     });
 
   const exportCSV = () => {
@@ -62,6 +62,7 @@ export const TestHistory: React.FC<TestHistoryProps> = ({ history, onClearHistor
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (

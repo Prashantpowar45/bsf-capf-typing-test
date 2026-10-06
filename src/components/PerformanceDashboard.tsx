@@ -261,8 +261,8 @@ export const PerformanceDashboard: React.FC<PerformanceDashboardProps> = ({
 
           <div className="h-64 w-full relative pt-4">
             <svg className="w-full h-full overflow-visible" viewBox="0 0 500 200" preserveAspectRatio="none">
-              {[80, 85, 90, 95, 100].map((val) => {
-                const y = 190 - ((val - 75) / 25) * 180;
+              {[0, 25, 50, 75, 90, 100].map((val) => {
+                const y = 190 - (val / 100) * 180;
                 return (
                   <g key={val}>
                     <line
@@ -290,8 +290,8 @@ export const PerformanceDashboard: React.FC<PerformanceDashboardProps> = ({
                   strokeLinejoin="round"
                   points={chartHistory.map((item, idx) => {
                     const x = 35 + (idx / (chartHistory.length - 1)) * 455;
-                    const clampedAcc = Math.max(75, Math.min(100, item.accuracy));
-                    const y = 190 - ((clampedAcc - 75) / 25) * 180;
+                    const clampedAcc = Math.max(0, Math.min(100, item.accuracy));
+                    const y = 190 - (clampedAcc / 100) * 180;
                     return `${x},${y}`;
                   }).join(' ')}
                 />
@@ -299,8 +299,8 @@ export const PerformanceDashboard: React.FC<PerformanceDashboardProps> = ({
 
               {chartHistory.map((item, idx) => {
                 const x = chartHistory.length === 1 ? 250 : 35 + (idx / (chartHistory.length - 1)) * 455;
-                const clampedAcc = Math.max(75, Math.min(100, item.accuracy));
-                const y = 190 - ((clampedAcc - 75) / 25) * 180;
+                const clampedAcc = Math.max(0, Math.min(100, item.accuracy));
+                const y = 190 - (clampedAcc / 100) * 180;
                 return (
                   <g key={item.id}>
                     <circle
