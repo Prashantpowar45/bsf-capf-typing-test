@@ -12,16 +12,16 @@ export const PrintPassageSheet: React.FC<PrintPassageSheetProps> = ({ passage, s
       {/* Official Government Exam Header */}
       <div className="text-center border-b-2 border-black pb-4 mb-6">
         <h2 className="text-sm font-bold uppercase tracking-widest text-slate-800 m-0">
-          GOVERNMENT OF INDIA • MINISTRY OF HOME AFFAIRS
+          CAPF / BSF HCM TYPING PRACTICE
         </h2>
         <h1 className="text-xl font-black uppercase tracking-wider text-black my-1">
-          DIRECTORATE GENERAL BORDER SECURITY FORCE (CAPF)
+          PAPER-TO-SCREEN PRACTICE SHEET
         </h1>
         <p className="text-sm font-semibold tracking-wide uppercase text-slate-900 m-0">
-          HEAD CONSTABLE (MINISTERIAL) RECRUITMENT EXAMINATION
+          HEAD CONSTABLE (MINISTERIAL) ENGLISH TYPING PREPARATION
         </p>
         <p className="text-xs font-bold text-slate-700 uppercase tracking-widest mt-1">
-          ENGLISH TYPING SKILL TEST QUESTION PAPER SHEET (PAPER-TO-SCREEN)
+          10-MINUTE ENGLISH TYPING PRACTICE PASSAGE
         </p>
       </div>
 
@@ -75,7 +75,7 @@ export const PrintPassageSheet: React.FC<PrintPassageSheetProps> = ({ passage, s
         </div>
         <div className="text-center text-[10px] text-slate-500">
           <p>*** END OF TYPING PASSAGE MATTER ***</p>
-          <p>CAPF / BSF HCM OFFICIAL RECRUITMENT SPECIFICATION</p>
+          <p>INDEPENDENT PRACTICE SIMULATOR • NOT AN OFFICIAL EXAM DOCUMENT</p>
         </div>
         <div className="text-center w-48">
           <div className="border-b border-black mb-1 w-full h-8"></div>

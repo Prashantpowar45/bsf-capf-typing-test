@@ -1,6 +1,6 @@
-# CAPF / BSF HCM English Typing Test Examination Simulator (Paper-to-Screen)
+# CAPF / BSF HCM English Typing Practice Simulator (Paper-to-Screen)
 
-An authentic, professional web application designed specifically to simulate the **CAPF / BSF HCM (Head Constable Ministerial)** official English typing skill test.
+An independent practice web application designed to simulate a **CAPF / BSF HCM (Head Constable Ministerial)** style English typing session.
 
 Built for candidates preparing for typing tests conducted by **BSF, CRPF, CISF, ITBP, SSB, and Assam Rifles**.
 
@@ -29,8 +29,8 @@ Built for candidates preparing for typing tests conducted by **BSF, CRPF, CISF, 
 - **Automated Qualification:**
   - Automatically determines **✓ QUALIFIED** or **✗ NOT QUALIFIED** based on Net Speed ≥ 35.0 WPM and accuracy metrics.
 - **Passage Library:**
-  - Pre-loaded with **50 official examination passages** directly from authentic CAPF HCM papers.
-  - 100% exact text fidelity preserved (no alterations, no spell checks, no paraphrasing).
+  - Pre-loaded with a **50-passage practice library** for repeated typing sessions.
+  - Passage text is preserved as stored in the project data (no runtime spell correction or paraphrasing).
   - Admin Passage Management interface to add, edit, export, or reset passages.
 
 ---

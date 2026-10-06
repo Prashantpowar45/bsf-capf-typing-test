@@ -17,13 +17,13 @@ export const ExamGuidelines: React.FC<ExamGuidelinesProps> = ({ onStartTest }) =
       <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl border-l-8 border-amber-600">
         <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">
           <ShieldCheck className="w-4 h-4" />
-          <span>Official Recruitment Standard</span>
+          <span>Exam-Style Practice Guide</span>
         </div>
         <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white mb-2">
-          CAPF / BSF HCM English Typing Examination Guidelines
+          CAPF / BSF HCM English Typing Practice Guidelines
         </h2>
         <p className="text-sm text-slate-300 leading-relaxed max-w-3xl">
-          Complete rules, marking criteria, penalty deductions, and paper-to-screen instructions for Head Constable (Ministerial) recruitment across Central Armed Police Forces (BSF, CRPF, CISF, ITBP, SSB).
+          A focused practice setup for 10-minute typing sessions, 35 WPM targets, paper-to-screen practice, and transparent speed/error calculations.
         </p>
       </div>
 
@@ -64,7 +64,7 @@ export const ExamGuidelines: React.FC<ExamGuidelinesProps> = ({ onStartTest }) =
             <h3>True Paper-to-Screen Mode (Physical Passage Copy)</h3>
           </div>
           <p className="text-sm text-slate-600 leading-relaxed">
-            In standard government typing test centres for BSF / CAPF HCM, candidates are handed a <strong>hard copy (printed paper sheet)</strong> containing the passage matter.
+            This simulator supports a <strong>hard-copy paper-to-screen workflow</strong>: print the selected passage, keep it beside the keyboard, and type without an on-screen reference.
           </p>
           <ul className="text-xs text-slate-700 space-y-1.5 list-disc list-inside bg-slate-50 p-4 rounded-xl border border-slate-200">
             <li>Before starting the test, select and click <strong>View / Print Passage</strong>.</li>
@@ -81,7 +81,7 @@ export const ExamGuidelines: React.FC<ExamGuidelinesProps> = ({ onStartTest }) =
             <h3>Standard Word Count: 5 Keystrokes = 1 Word</h3>
           </div>
           <p className="text-sm text-slate-600 leading-relaxed">
-            In government typing examinations, word count is not determined by space count alone. The universal Ministry of Home Affairs rule is:
+            For this practice simulator, typing speed is calculated using the common convention:
           </p>
           <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-xs font-mono text-amber-950 space-y-1">
             <p><strong>Gross Words</strong> = Total Keystrokes (including letters, spaces, and punctuation) ÷ 5</p>

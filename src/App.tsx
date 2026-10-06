@@ -220,13 +220,13 @@ export function App() {
         <footer className="no-print bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-2">
             <p className="font-semibold text-slate-400">
-              CAPF / BSF HCM (Head Constable Ministerial) English Typing Examination Simulator
+              CAPF / BSF HCM (Head Constable Ministerial) English Typing Practice Simulator
             </p>
             <p>
               Simulates authentic 10-Minute Paper-to-Screen examination environment with 35 WPM standard, 5-keystroke word calculation, and 5% practice mistake allowance.
             </p>
             <p className="text-slate-600 text-[11px] pt-2">
-              All 50 official passages preserved with 100% exact text fidelity • Created for Prashant Powar
+              Practice passage library • Local performance tracking • Independent preparation tool
             </p>
           </div>
         </footer>

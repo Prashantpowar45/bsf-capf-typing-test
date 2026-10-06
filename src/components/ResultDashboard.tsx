@@ -49,6 +49,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
   const handlePrintScorecard = () => {
     document.body.dataset.printMode = 'scorecard';
     window.print();
+    delete document.body.dataset.printMode;
   };
 
   const getRatingBadgeClass = (rating: string) => {
@@ -81,7 +82,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
               </div>
               <div>
                 <span className="text-xs font-bold tracking-widest text-amber-400 uppercase">
-                  OFFICIAL EXAMINATION SCORE CARD
+                  PRACTICE EXAMINATION SCORECARD
                 </span>
                 <h1 className="text-xl sm:text-2xl font-black text-white m-0 tracking-tight">
                   CAPF / BSF HCM TYPING TEST RESULT
@@ -263,7 +264,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
           <div className="mt-4 bg-amber-50/60 border border-amber-200 rounded-xl p-4 text-xs text-amber-950">
             <div className="flex items-center space-x-2 font-bold mb-2">
               <Calculator className="w-4 h-4 text-amber-700" />
-              <span>CAPF / BSF HCM Official Evaluation Formula:</span>
+              <span>Practice Evaluation Formula:</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-[11px]">
               <div className="bg-white/80 p-2.5 rounded border border-amber-200">
@@ -356,7 +357,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
             onClick={onViewHistory}
             className="px-5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-xl text-sm font-bold shadow-sm transition-colors"
           >
-            View in Performance Dashboard
+            View Test History
           </button>
 
           <button
@@ -364,7 +365,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
             className="px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-sm font-bold flex items-center space-x-2 shadow-md hover:shadow-lg transition-all"
           >
             <RotateCcw className="w-4 h-4" />
-            <span>Practice Another Passage</span>
+            <span>Retake This Passage</span>
           </button>
         </div>
 

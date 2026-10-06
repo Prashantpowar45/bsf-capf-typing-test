@@ -54,6 +54,7 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
     setHasPrintedOrViewed(true);
     document.body.dataset.printMode = 'passage';
     window.print();
+    delete document.body.dataset.printMode;
   };
 
   return (
@@ -63,13 +64,13 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
         <div className="max-w-3xl">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3 border border-amber-500/30">
             <BookOpen className="w-3.5 h-3.5" />
-            <span>Official Examination Workflow</span>
+            <span>Exam-Style Practice Workflow</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2">
             Select & Print Your Examination Passage
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
-            In authentic CAPF & BSF HCM exams, candidates type looking at a physical printed question paper. 
+            Use this paper-to-screen practice mode to type while looking at a printed passage. 
             Choose any passage from the official 50-matter library below, click <strong className="text-white">View / Print</strong>, 
             keep the physical sheet on your desk, and begin your 10-minute test.
           </p>
