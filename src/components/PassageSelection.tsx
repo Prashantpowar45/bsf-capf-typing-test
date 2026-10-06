@@ -73,7 +73,7 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
             Use this paper-to-screen practice mode to type while looking at a printed passage. 
-            Choose any passage from the official 50-matter library below, click <strong className="text-white">View / Print</strong>, 
+            Choose any passage from the uploaded BSF typing material below, click <strong className="text-white">View / Print</strong>, 
             keep the physical sheet on your desk, and begin your 10-minute test.
           </p>
 
