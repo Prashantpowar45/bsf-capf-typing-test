@@ -127,10 +127,10 @@ export const PassageManager: React.FC<PassageManagerProps> = ({
             <span>Passage Database Management</span>
           </div>
           <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-            Official 50 Passages & Custom Matter Library
+            BSF Typing Passage Library
           </h2>
           <p className="text-xs text-slate-500">
-            Internal database containing {passages.length} official CAPF / BSF HCM typing examination passages
+            Internal database containing {passages.length} BSF HCM typing practice passages
           </p>
         </div>
 
@@ -160,7 +160,7 @@ export const PassageManager: React.FC<PassageManagerProps> = ({
           <button
             onClick={() => setShowResetConfirm(true)}
             className="px-3 py-2 bg-white hover:bg-slate-50 text-slate-500 hover:text-rose-600 rounded-lg text-xs font-bold border border-slate-200 transition-colors"
-            title="Reset to default 50 passages"
+            title="Reset to default passage library"
           >
             <RotateCcw className="w-3.5 h-3.5" />
           </button>
@@ -217,7 +217,7 @@ export const PassageManager: React.FC<PassageManagerProps> = ({
                   </td>
                   <td className="py-3.5 px-4 text-center">
                     <span className="text-[10px] font-semibold text-slate-500">
-                      {p.isCustom ? 'User Created' : 'Official CAPF'}
+                      {p.isCustom ? 'User Created' : 'Uploaded PDF'}
                     </span>
                   </td>
                   <td className="py-3.5 px-4 text-right">
@@ -355,9 +355,9 @@ export const PassageManager: React.FC<PassageManagerProps> = ({
       {showResetConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 text-slate-900 border border-slate-200">
-            <h3 className="text-base font-bold text-center mb-2">Reset to Default 50 Passages?</h3>
+            <h3 className="text-base font-bold text-center mb-2">Reset to Default Passage Library?</h3>
             <p className="text-xs text-slate-600 text-center mb-6 leading-relaxed">
-              This will restore the original 50 official CAPF / BSF HCM passages from the examination matter booklet and remove any custom changes.
+              This will restore the 96 BSF HCM passages imported from the uploaded typing material and remove any custom changes.
             </p>
             <div className="flex items-center space-x-3">
               <button
