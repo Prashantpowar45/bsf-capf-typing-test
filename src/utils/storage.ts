@@ -2,7 +2,7 @@ import { INITIAL_PASSAGES } from '../data/passages';
 import type { EvaluationResult, Passage, TestHistoryItem, UserSettings } from '../types';
 
 const STORAGE_KEYS = {
-  PASSAGES: 'bsf_capf_passages_v1',
+  PASSAGES: 'bsf_capf_passages_v2',
   HISTORY: 'bsf_capf_history_v1',
   SETTINGS: 'bsf_capf_settings_v1',
   LAST_SELECTED_PASSAGE: 'bsf_capf_last_passage_v1',
