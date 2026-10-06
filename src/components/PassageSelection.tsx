@@ -58,15 +58,17 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
       {/* Hero Exam Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl border-l-8 border-amber-500 mb-8">
-        <div className="max-w-3xl">
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white rounded-3xl p-6 sm:p-9 shadow-2xl shadow-slate-900/15 border border-white/10 mb-6 sm:mb-8">
+        <div className="absolute -top-24 -right-20 h-64 w-64 rounded-full bg-amber-400/10 blur-3xl"></div>
+        <div className="absolute -bottom-28 left-1/3 h-56 w-56 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div className="relative max-w-3xl">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3 border border-amber-500/30">
             <BookOpen className="w-3.5 h-3.5" />
             <span>Exam-Style Practice Workflow</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white mb-3">
             Select & Print Your Examination Passage
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
@@ -75,20 +77,20 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
             keep the physical sheet on your desk, and begin your 10-minute test.
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-950/60 p-4 rounded-xl border border-slate-700/60">
-            <div className="border-r border-slate-800 pr-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs bg-white/5 p-2.5 rounded-2xl border border-white/10 backdrop-blur">
+            <div className="rounded-xl bg-black/15 p-3">
               <span className="text-slate-400 block">Exam Duration</span>
               <strong className="text-sm font-bold text-white">10 Minutes</strong>
             </div>
-            <div className="border-r border-slate-800 pr-2">
+            <div className="rounded-xl bg-black/15 p-3">
               <span className="text-slate-400 block">Required Speed</span>
               <strong className="text-sm font-bold text-emerald-400">35 WPM Target</strong>
             </div>
-            <div className="border-r border-slate-800 pr-2">
+            <div className="rounded-xl bg-black/15 p-3">
               <span className="text-slate-400 block">Backspace Key</span>
               <strong className="text-sm font-bold text-rose-400">Strictly Disabled</strong>
             </div>
-            <div>
+            <div className="rounded-xl bg-black/15 p-3">
               <span className="text-slate-400 block">Mistake Allowance</span>
               <strong className="text-sm font-bold text-amber-400">5% Relaxation</strong>
             </div>
@@ -97,9 +99,9 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
       </div>
 
       {/* Selected Passage Quick Action Bar */}
-      <div className="bg-white rounded-xl shadow-md p-5 border border-slate-200 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="glass-panel soft-card rounded-2xl p-5 sm:p-6 border border-white mb-7 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 ring-1 ring-slate-200/70">
         <div className="flex items-start space-x-3">
-          <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-black text-lg border border-amber-300 shrink-0">
+          <div className="w-12 h-12 rounded-2xl bg-slate-950 text-amber-300 flex items-center justify-center font-black text-lg shadow-lg shadow-slate-900/10 shrink-0">
             {selectedPassage.number < 10 ? `0${selectedPassage.number}` : selectedPassage.number}
           </div>
           <div>
@@ -120,7 +122,7 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <button
             onClick={() => setShowPreviewModal(true)}
-            className="flex-1 md:flex-none px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-lg text-sm font-bold flex items-center justify-center space-x-2 border border-slate-300 transition-colors shadow-sm"
+            className="flex-1 md:flex-none px-4 py-3 bg-white hover:bg-slate-50 text-slate-800 rounded-xl text-sm font-bold flex items-center justify-center space-x-2 border border-slate-200 transition-all shadow-sm hover:shadow-md"
           >
             <Printer className="w-4 h-4 text-slate-700" />
             <span>View / Print Passage</span>
@@ -128,7 +130,7 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
 
           <button
             onClick={onStartTest}
-            className="flex-1 md:flex-none px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-bold flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-all"
+            className="flex-1 md:flex-none px-6 py-3 bg-slate-950 hover:bg-slate-800 text-white rounded-xl text-sm font-black flex items-center justify-center space-x-2 shadow-lg shadow-slate-900/10 hover:-translate-y-0.5 transition-all"
           >
             <Play className="w-4 h-4 fill-white" />
             <span>Start 10-Min Test</span>
@@ -138,7 +140,7 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
       </div>
 
       {/* Search & Passage Library Controls */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+      <div className="glass-panel soft-card rounded-2xl border border-white ring-1 ring-slate-200/70 p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 mb-5">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
@@ -146,7 +148,7 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
             placeholder="Search by title or passage number..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none shadow-sm"
+            className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-amber-500/40 focus:border-amber-400 focus:outline-none shadow-sm"
           />
         </div>
 
@@ -172,10 +174,10 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
           return (
             <div
               key={passage.id}
-              className={`bg-white rounded-xl p-5 border transition-all duration-200 flex flex-col justify-between ${
+              className={`bg-white/95 rounded-2xl p-5 border transition-all duration-200 flex flex-col justify-between min-h-[220px] ${
                 isSelected
-                  ? 'border-amber-500 shadow-md ring-2 ring-amber-500/20 bg-amber-50/20'
-                  : 'border-slate-200 hover:border-slate-300 hover:shadow-sm'
+                  ? 'border-amber-400 shadow-lg shadow-amber-500/10 ring-2 ring-amber-400/20 bg-amber-50/60 -translate-y-0.5'
+                  : 'border-slate-200 hover:border-slate-300 hover:shadow-lg hover:-translate-y-0.5'
               }`}
             >
               <div>
@@ -192,7 +194,7 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
                   {passage.title}
                 </h4>
 
-                <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed mb-4 font-serif">
+                <p className="text-xs text-slate-600 line-clamp-4 leading-relaxed mb-5 font-serif">
                   {passage.content}
                 </p>
               </div>
@@ -225,6 +227,14 @@ export const PassageSelection: React.FC<PassageSelectionProps> = ({
           );
         })}
       </div>
+
+      {filteredPassages.length === 0 && (
+        <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white/70 p-10 text-center">
+          <Search className="w-8 h-8 text-slate-300 mx-auto mb-3" />
+          <p className="font-bold text-slate-800">No matching passage found</p>
+          <p className="text-sm text-slate-500 mt-1">Try another title or passage number.</p>
+        </div>
+      )}
 
       {/* View & Print Passage Modal */}
       {showPreviewModal && (

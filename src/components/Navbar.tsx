@@ -63,9 +63,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="no-print bg-slate-900 text-white border-b-4 border-amber-600 shadow-md sticky top-0 z-40">
+    <header className="no-print bg-slate-950/95 backdrop-blur-xl text-white border-b border-white/10 shadow-lg shadow-slate-950/10 sticky top-0 z-40">
       {/* Top Government-Style Strip */}
-      <div className="bg-slate-950 px-4 py-1.5 text-xs text-slate-400 flex flex-wrap justify-between items-center border-b border-slate-800">
+      <div className="hidden sm:flex bg-black/20 px-4 py-1.5 text-[11px] text-slate-400 justify-between items-center border-b border-white/5">
         <div className="flex items-center space-x-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span className="font-semibold tracking-wider text-slate-300">
@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center justify-between h-16">
           {/* Logo & Title */}
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => !isTestActive && setActiveTab('test')}>
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-slate-950 font-black shadow-inner">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-300 via-amber-400 to-orange-500 flex items-center justify-center text-slate-950 font-black shadow-lg shadow-amber-500/20 ring-1 ring-white/20">
               <ShieldCheck className="w-6 h-6 text-slate-950" />
             </div>
             <div>
@@ -111,8 +111,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => setActiveTab('test')}
                 className={`px-3.5 py-2 rounded-md text-sm font-semibold transition-colors flex items-center space-x-1.5 ${
                   activeTab === 'test'
-                    ? 'bg-amber-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-sm'
+                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 <Keyboard className="w-4 h-4" />
@@ -123,8 +123,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => setActiveTab('performance')}
                 className={`px-3.5 py-2 rounded-md text-sm font-semibold transition-colors flex items-center space-x-1.5 ${
                   activeTab === 'performance'
-                    ? 'bg-amber-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-sm'
+                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 <BarChart3 className="w-4 h-4" />
@@ -135,8 +135,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => setActiveTab('history')}
                 className={`px-3.5 py-2 rounded-md text-sm font-semibold transition-colors flex items-center space-x-1.5 ${
                   activeTab === 'history'
-                    ? 'bg-amber-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-sm'
+                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 <History className="w-4 h-4" />
@@ -147,8 +147,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => setActiveTab('passages')}
                 className={`px-3.5 py-2 rounded-md text-sm font-semibold transition-colors flex items-center space-x-1.5 ${
                   activeTab === 'passages'
-                    ? 'bg-amber-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-sm'
+                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 <BookOpen className="w-4 h-4" />
@@ -159,8 +159,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => setActiveTab('guidelines')}
                 className={`px-3.5 py-2 rounded-md text-sm font-semibold transition-colors flex items-center space-x-1.5 ${
                   activeTab === 'guidelines'
-                    ? 'bg-amber-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-sm'
+                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 <FileText className="w-4 h-4" />
@@ -180,7 +180,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => onUpdateSettings({ soundEnabled: !settings.soundEnabled })}
               title={settings.soundEnabled ? 'Mute Sounds' : 'Enable Key Sound'}
-              className="p-2 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+              className="p-2 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
             >
               {settings.soundEnabled ? <Volume2 className="w-4 h-4 text-emerald-400" /> : <VolumeX className="w-4 h-4 text-slate-500" />}
             </button>
@@ -189,7 +189,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={toggleFullscreen}
               title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen Examination Mode'}
-              className="p-2 rounded-md text-slate-300 hover:bg-slate-800 hover:text-white transition-colors"
+              className="p-2 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors"
             >
               {isFullscreen ? <Minimize2 className="w-4 h-4 text-amber-400" /> : <Maximize2 className="w-4 h-4" />}
             </button>
@@ -199,7 +199,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 onClick={openSettings}
                 title="Candidate Profile & Settings"
-                className="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-700 transition-colors"
+                className="flex items-center space-x-2 bg-white/8 hover:bg-white/12 text-slate-200 px-3 py-2 rounded-xl text-xs font-medium border border-white/10 transition-colors"
               >
                 <User className="w-3.5 h-3.5 text-amber-400" />
                 <span className="max-w-[100px] truncate">{settings.candidateName}</span>
@@ -211,7 +211,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Mobile Navigation bar */}
         {!isTestActive && (
-          <div className="flex md:hidden overflow-x-auto py-2 space-x-2 border-t border-slate-800 scrollbar-none">
+          <div className="flex md:hidden overflow-x-auto py-2.5 space-x-2 border-t border-white/5 scrollbar-none">
             <button
               onClick={() => setActiveTab('test')}
               className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap ${

@@ -68,16 +68,16 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6">
       
       {/* Printable Scorecard Banner */}
-      <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+      <div className="bg-white/95 rounded-3xl shadow-2xl shadow-slate-900/10 border border-white ring-1 ring-slate-200/70 overflow-hidden">
         
         {/* Scorecard Header */}
-        <div className="bg-slate-900 text-white p-6 sm:p-8 border-b-4 border-amber-600">
+        <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white p-6 sm:p-8 border-b border-white/10">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-black">
+              <div className="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-black shadow-lg shadow-amber-500/20">
                 <ShieldCheck className="w-7 h-7" />
               </div>
               <div>
@@ -114,7 +114,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
           <div className="max-w-2xl mx-auto space-y-3">
             <div className="inline-flex items-center justify-center">
               {isQualified ? (
-                <div className="inline-flex items-center space-x-2 bg-emerald-600 text-white px-8 py-3 rounded-2xl shadow-lg transform -rotate-1 hover:rotate-0 transition-transform">
+                <div className="inline-flex items-center space-x-2 bg-emerald-600 text-white px-7 py-3 rounded-2xl shadow-lg shadow-emerald-600/15">
                   <CheckCircle className="w-8 h-8 shrink-0" />
                   <span className="text-2xl sm:text-3xl font-black tracking-wider uppercase">
                     ✓ QUALIFIED
@@ -151,10 +151,10 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
             Test Performance Summary
           </h3>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             
             {/* Gross Speed */}
-            <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
               <div className="flex items-center justify-between text-slate-500 mb-2">
                 <span className="text-xs font-bold uppercase tracking-wider">Gross Speed</span>
                 <Zap className="w-4 h-4 text-amber-500" />
@@ -195,7 +195,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
             </div>
 
             {/* Accuracy */}
-            <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
               <div className="flex items-center justify-between text-slate-500 mb-2">
                 <span className="text-xs font-bold uppercase tracking-wider">Accuracy</span>
                 <Percent className="w-4 h-4 text-blue-500" />
@@ -209,7 +209,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
             </div>
 
             {/* Mistakes & 5% Relaxation */}
-            <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
               <div className="flex items-center justify-between text-slate-500 mb-2">
                 <span className="text-xs font-bold uppercase tracking-wider">Mistakes</span>
                 <AlertTriangle className={`w-4 h-4 ${result.excessMistakes > 0 ? 'text-rose-500' : 'text-emerald-500'}`} />
@@ -232,7 +232,7 @@ export const ResultDashboard: React.FC<ResultDashboardProps> = ({
           </div>
 
           {/* Detailed Specifications Table */}
-          <div className="mt-6 bg-white rounded-xl border border-slate-200 p-5 shadow-sm text-xs text-slate-700">
+          <div className="mt-6 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm text-xs text-slate-700">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div>
                 <span className="text-slate-400 uppercase font-bold block mb-1">Passage Details</span>

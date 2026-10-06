@@ -211,6 +211,7 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
   const keystrokesCount = typedText.length;
   const wordsCount = Math.round((keystrokesCount / 5) * 10) / 10;
   const liveGrossWpm = elapsedSeconds >= 3 ? Math.round((wordsCount / elapsedMinutes) * 10) / 10 : 0;
+  const timeProgress = Math.max(0, Math.min(100, (secondsRemaining / TOTAL_TEST_SECONDS) * 100));
   
   // Format MM:SS
   const formatTime = (secs: number) => {
@@ -232,11 +233,11 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
       : 'text-base sm:text-lg';
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] bg-slate-100/80 py-6 px-4 sm:px-6 lg:px-8 select-none">
+    <div className="min-h-[calc(100vh-5rem)] bg-transparent py-4 sm:py-6 px-3 sm:px-6 lg:px-8 select-none mobile-safe-bottom">
       <div className="max-w-5xl mx-auto space-y-4">
         
         {/* Top Examination Status Bar */}
-        <div className="bg-white rounded-xl shadow-md border border-slate-200 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4">
+        <div className="glass-panel soft-card rounded-2xl border border-white ring-1 ring-slate-200/70 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4 overflow-hidden relative">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 rounded-lg bg-slate-900 text-amber-400 flex items-center justify-center font-bold text-sm shrink-0">
               <Lock className="w-5 h-5" />
@@ -279,28 +280,34 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
               <span className="hidden sm:inline">Submit Test</span>
             </button>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-100">
+            <div
+              className="h-full bg-amber-500 transition-[width] duration-300"
+              style={{ width: `${timeProgress}%` }}
+            />
+          </div>
         </div>
 
         {/* Live Test Information Bar (Configurable) */}
         {settings.liveStatsEnabled && (
-          <div className="bg-slate-900 text-white rounded-xl px-5 py-3 shadow-md grid grid-cols-2 sm:grid-cols-5 gap-3 text-center border-t-2 border-amber-500">
-            <div className="border-r border-slate-800 last:border-none">
+          <div className="bg-slate-950 text-white rounded-2xl px-3 sm:px-4 py-3 shadow-lg grid grid-cols-2 sm:grid-cols-5 gap-2 text-center border border-white/10">
+            <div className="rounded-xl bg-white/5 px-2 py-2">
               <span className="text-[11px] uppercase tracking-wider text-slate-400 block font-semibold">Keystrokes</span>
               <span className="text-lg font-black text-white">{keystrokesCount}</span>
             </div>
-            <div className="border-r border-slate-800 last:border-none">
+            <div className="rounded-xl bg-white/5 px-2 py-2">
               <span className="text-[11px] uppercase tracking-wider text-slate-400 block font-semibold">Gross Words</span>
               <span className="text-lg font-black text-amber-400">{wordsCount}</span>
             </div>
-            <div className="border-r border-slate-800 last:border-none">
+            <div className="rounded-xl bg-white/5 px-2 py-2">
               <span className="text-[11px] uppercase tracking-wider text-slate-400 block font-semibold">Gross Speed</span>
               <span className="text-lg font-black text-emerald-400">{liveGrossWpm} <span className="text-xs font-normal">WPM</span></span>
             </div>
-            <div className="border-r border-slate-800 last:border-none">
+            <div className="rounded-xl bg-white/5 px-2 py-2">
               <span className="text-[11px] uppercase tracking-wider text-slate-400 block font-semibold">Time Elapsed</span>
               <span className="text-lg font-black text-white">{formatTime(elapsedSeconds)}</span>
             </div>
-            <div className="col-span-2 sm:col-span-1">
+            <div className="col-span-2 sm:col-span-1 rounded-xl bg-amber-400/10 px-2 py-2">
               <span className="text-[11px] uppercase tracking-wider text-slate-400 block font-semibold">Target</span>
               <span className="text-lg font-black text-amber-300">35 WPM</span>
             </div>
@@ -309,17 +316,17 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
 
         {/* Warning Notification Toast */}
         {warningMessage && (
-          <div className="bg-rose-50 border-2 border-rose-500 text-rose-900 px-4 py-2.5 rounded-lg flex items-center space-x-2 text-sm font-bold shadow-md animate-bounce">
+          <div className="bg-rose-50 border border-rose-200 text-rose-900 px-4 py-3 rounded-xl flex items-center space-x-2 text-sm font-semibold shadow-sm">
             <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
             <span>{warningMessage}</span>
           </div>
         )}
 
         {/* Active Typing Input Area */}
-        <div className="bg-white rounded-2xl shadow-xl border-2 border-slate-300 p-6 space-y-3 relative">
-          <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div className="glass-panel soft-card rounded-3xl border border-white ring-1 ring-slate-200/70 p-4 sm:p-6 space-y-4 relative">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-200 pb-3">
             <div className="flex items-center space-x-2">
-              <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.12)]"></span>
               <label htmlFor="exam-textarea" className="text-xs font-black uppercase tracking-wider text-slate-800">
                 TYPE HERE (LOOK AT YOUR PHYSICAL PRINTED PAPER):
               </label>
@@ -350,11 +357,11 @@ export const TypingScreen: React.FC<TypingScreenProps> = ({
             autoCorrect="off"
             autoCapitalize="off"
             rows={12}
-            className={`w-full p-4 border border-slate-300 rounded-xl text-slate-900 font-mono leading-relaxed tracking-normal focus:ring-4 focus:ring-amber-500/20 focus:border-amber-600 focus:outline-none resize-none shadow-inner bg-slate-50/40 select-none ${typingFontClass}`}
-            placeholder="Place your physical printed paper on your desk and start typing here... As per official CAPF / BSF HCM rules, backspace and editing keys are disabled. Type forward accurately."
+            className={`w-full min-h-[320px] sm:min-h-[390px] p-4 sm:p-5 border border-slate-200 rounded-2xl text-slate-900 font-mono leading-[1.9] tracking-normal focus:ring-4 focus:ring-amber-500/15 focus:border-amber-500 focus:outline-none resize-none shadow-inner bg-white select-none ${typingFontClass}`}
+            placeholder="Start typing from your printed passage here. Editing is locked, so focus on steady forward typing."
           />
 
-          <div className="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-100">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-slate-500 pt-2 border-t border-slate-100">
             <div className="flex items-center space-x-3">
               <span>Keystrokes: <strong className="text-slate-800">{keystrokesCount}</strong></span>
               <span>•</span>
