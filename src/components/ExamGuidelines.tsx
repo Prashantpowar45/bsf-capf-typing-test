@@ -161,7 +161,7 @@ export const ExamGuidelines: React.FC<ExamGuidelinesProps> = ({ onStartTest }) =
         <div>
           <h3 className="text-lg font-black tracking-tight">Ready to Test Your Skills?</h3>
           <p className="text-xs font-semibold text-slate-900 mt-0.5">
-            Select one of the 50 official passages, print the paper, and experience realistic 10-minute exam pressure.
+            Select one of the available BSF typing passages, print the paper, and experience realistic 10-minute exam pressure.
           </p>
         </div>
 
